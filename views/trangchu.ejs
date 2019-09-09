@@ -1,0 +1,76 @@
+<html>
+
+<head>
+	<title>ahihi</title>
+	<link rel="stylesheet" type="text/css" href="sever.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="socket.io/socket.io.js"></script>
+	<script>
+		var socket = io("http://localhost:4000");
+
+		socket.on("server-send-dki-thatbai", function () {
+			alert("Sai user name, co nguoi da dang ky ");
+		});
+
+		socket.on("server-send-dki-thanhcong", function (data) {
+			$("#user").html(data);
+			$("#loginform").hide(2000);
+			$("#chatform").show(1000);
+		});
+
+		socket.on("server-send-ds-user", function (data) {
+			$("#boxcontent").html("");
+			data.forEach(function (i) {
+				$("#boxcontent").append("<div class='user'>" + i + "</div>");
+			});
+		});
+
+		socket.on("sever-send-mess", function (data) {
+			$("#listmess").append("<div>" + data.un + ":" + data.nd + "</div>");
+		});
+
+		$(document).ready(function () {
+			$("#loginform").show();
+			$("#chatform").hide();
+
+			$("#btnregister").click(function () {
+				socket.emit("cliend-send-username", $("#textusername").val());
+			});
+			$("#btnlogout").click(function () {
+				socket.emit("logout");
+			});
+			$("#btnsendmess").click(function () {
+				socket.emit("user-send-mess", $("#text-mess").val());
+			});
+		});
+	</script>
+<body>
+	<div id="wrapper">
+		<div id="loginform">
+			<h3>TEN BAN</h3>
+			<input type="text" id="textusername" />
+			<input type="button" id="btnregister" value="register" />
+		</div>
+		<div id="chatform">
+			<div id="left">
+				<h2>NHung nguoi online</h2>
+				<div id="boxcontent">
+
+				</div>
+			</div>
+			<div id="right">
+				<div id="chao">
+
+					<input type="button" id="btnlogout" value="logout" />
+				</div>
+				<div id="listmess">
+
+				</div>
+				<input type="text" id="text-mess" />
+				<input type="button" name="btnsendmess" id="btnsendmess" value="Send" />
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

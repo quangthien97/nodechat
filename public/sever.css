@@ -1,0 +1,39 @@
+#wrapper{
+    width: 600px;
+    margin: 0 auto;
+    background-color: aquamarine
+}
+#chatform{
+    width: 100%;
+    background-color: blanchedalmond
+}
+#left{
+    width: 30%;
+    background-color: azure;
+    float: left;
+}
+#right{
+    width: 70%;
+    background-color: royalblue;
+    float: left;
+}
+h2{ 
+    margin: 0px;
+    width: 100%;
+    border: 1px solid black;
+    text-align: center;
+}
+#boxcontent{
+    margin: 0px;
+    width: 100%;
+    border: 1px solid black;
+    text-align: center;
+}
+#useronline{
+    width: 100%;
+}
+#listmess{
+    width: 100%;
+    height: 200px;
+    background-color: blueviolet;
+}
